@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Test Suite">
+    <test name="UI Automation Tests">
+        <classes>
+            <class name="fi.TestNgs.TestUIAutomation" />
+        </classes>
+    </test>
+</suite>

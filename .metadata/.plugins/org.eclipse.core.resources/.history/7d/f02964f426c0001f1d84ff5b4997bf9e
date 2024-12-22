@@ -1,0 +1,55 @@
+package fi.TestNgs;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+
+public class TestUIAutomation {
+    WebDriver driver;
+
+    @BeforeClass
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "C:/driver/chromedriver.exe"); // Update path to your chromedriver
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://the-internet.herokuapp.com/"); // Replace with the URL of your test page
+    }
+
+    @Test(priority = 1)
+    public void testTextbox() {
+        WebElement textbox = driver.findElement(By.id("fname")); // Replace with the actual ID
+        textbox.sendKeys("Test Automation");
+        Assert.assertEquals(textbox.getAttribute("value"), "Test Automation");
+    }
+
+    @Test(priority = 2)
+    public void testButtonClick() {
+        WebElement button = driver.findElement(By.cssSelector(".button-class")); // Replace with the actual CSS
+        button.click();
+        String expectedUrl ="https://the-internet.herokuapp.com/"; // Replace with the expected URL
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrl);
+    }
+
+    @Test(priority = 3)
+    public void testDropdown() {
+        WebElement dropdown = driver.findElement(By.xpath("//select[@id='testingDropdown']")); // Replace with the actual XPath
+        Select select = new Select(dropdown);
+        select.selectByVisibleText("Option 1");
+        Assert.assertEquals(select.getFirstSelectedOption().getText(), "Option 1");
+    }
+
+    @AfterClass
+    public void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+

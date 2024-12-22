@@ -1,0 +1,10 @@
+package fi.TestNgs;
+
+public class TestUIAutomation {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
